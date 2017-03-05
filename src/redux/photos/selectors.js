@@ -9,7 +9,7 @@ export const selectEntities = createSelector(
 
 export const selectFavorites = createSelector(
   [selectPhotos, selectEntities],
-  (state, entities) => Object.keys(state.favorites)
-    .sort((a, b) => state.favorites[a].timestamp < state.favorites[b].timestamp)
-    .map(key => entities[key])
+  (state, entities) => state.favorites
+    .sort((a, b) => a.timestamp < b.timestamp)
+    .map(favorite => entities[favorite.id])
 );

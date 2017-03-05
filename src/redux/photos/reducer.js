@@ -2,7 +2,7 @@ import * as actionTypes from './action-types';
 
 const initialState = {
   entities: {},
-  favorites: {},
+  favorites: [],
 };
 
 export default (state = initialState, action) => {
@@ -20,14 +20,15 @@ export default (state = initialState, action) => {
         },
       };
     case actionTypes.ADD_FAVORITE:
-      const { id } = action.payload;
       return {
         ...state,
-        favorites: {
-          ...state.favorites,
-          [id]: action.payload,
-        },
-      }
+        favorites: [...state.favorites, action.payload],
+      };
+    case actionTypes.REMOVE_FAVORITE:
+      return {
+        ...state,
+        favorites: state.favorites.filter(favorite => favorite.id !== action.payload.id)
+      };
     default:
       return state;
   }

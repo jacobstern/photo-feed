@@ -31,9 +31,11 @@ it('sorts favorites by timestamp descending', () => {
   store.dispatch(actions.mergeEntities([
     { id: 'foo', favorited: false },
     { id: 'bar', favorited: false },
+    { id: 'baz', favorited: false },
   ]));
   store.dispatch(actions.addFavorite('foo', 1500));
   store.dispatch(actions.addFavorite('bar', 2000));
+  store.dispatch(actions.addFavorite('baz', 1000));
   
   const state = store.getState();
   const favorites = selectors.selectFavorites(state);
@@ -46,5 +48,37 @@ it('sorts favorites by timestamp descending', () => {
       id: 'foo',
       favorited: true,
     },
-  ])
+    {
+      id: 'baz',
+      favorited: true,
+    },
+  ]);
+});
+
+it('removes a favorite and unsets the favorited flag', () => {
+  const store = initStore();
+  store.dispatch(actions.mergeEntities([
+    { id: 'foo', favorited: false },
+    { id: 'bar', favorited: false },
+    { id: 'baz', favorited: false },
+  ]));
+  store.dispatch(actions.addFavorite('foo', 1500));
+  store.dispatch(actions.addFavorite('bar', 2000));
+  store.dispatch(actions.addFavorite('baz', 1000));
+  store.dispatch(actions.removeFavorite('bar'));
+
+  const state = store.getState();
+  const favorites = selectors.selectFavorites(state);
+  const entities = selectors.selectEntities(state);
+  expect(favorites).toEqual([
+    {
+      id: 'foo',
+      favorited: true,
+    },
+    {
+      id: 'baz',
+      favorited: true,
+    },
+  ]);
+  expect(entities['bar'].favorited).toEqual(false);
 });
