@@ -1,18 +1,33 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { Provider } from 'react-redux';
+import { Link } from 'react-router';
+import './app.css';
+import { initStore } from './redux/store';
+import feedService from './services/feed-service';
+import 'normalize.css/normalize.css'
 
 class App extends Component {
+
+  constructor (props) {
+    super(props);
+    this.store = initStore({ feedService });
+  }
+
   render() {
     return (
-      <div className="App">
-        <div className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h2>Welcome to React</h2>
+      <div className='app'>
+        <div className='app__nav-container'>
+          <nav className='app__nav'>
+            <Link to='/'>Feed</Link>
+            <span> | </span>
+            <Link to='favorites'>Favorites</Link>
+          </nav>
         </div>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+        <Provider store={this.store}>
+          <div className='app__container'>
+            {this.props.children}
+          </div>
+        </Provider>
       </div>
     );
   }

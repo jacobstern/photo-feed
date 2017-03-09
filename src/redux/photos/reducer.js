@@ -20,14 +20,30 @@ export default (state = initialState, action) => {
         },
       };
     case actionTypes.ADD_FAVORITE:
+      const addedId = action.payload.id;
       return {
         ...state,
+        entities: {
+          ...state.entities,
+          [addedId]: {
+            ...state.entities[addedId],
+            favorited: true,
+          },
+        },
         favorites: [...state.favorites, action.payload],
       };
     case actionTypes.REMOVE_FAVORITE:
+      const removedId = action.payload.id;
       return {
         ...state,
-        favorites: state.favorites.filter(favorite => favorite.id !== action.payload.id)
+        entities: {
+          ...state.entities,
+          [removedId]: {
+            ...state.entities[removedId],
+            favorited: false,
+          },
+        },
+        favorites: state.favorites.filter(favorite => favorite.id !== action.payload.id),
       };
     default:
       return state;

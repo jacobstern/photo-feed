@@ -1,0 +1,8 @@
+.favorite-button__input {
+  margin: 3px;
+}
+
+.favorite-button__label {
+  font-size: 13px;
+  vertical-align: top;
+}

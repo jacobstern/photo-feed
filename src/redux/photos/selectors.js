@@ -10,6 +10,6 @@ export const selectEntities = createSelector(
 export const selectFavorites = createSelector(
   [selectPhotos, selectEntities],
   (state, entities) => state.favorites
-    .sort((a, b) => a.timestamp < b.timestamp)
+    .sort((a, b) => b.timestamp - a.timestamp)
     .map(favorite => entities[favorite.id])
 );

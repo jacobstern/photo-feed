@@ -1,0 +1,39 @@
+.photos-list-item__container {
+  width: 100%;
+  max-height: 300px;
+  overflow: hidden;
+}
+
+.photos-list-item__image {
+  width: 100%;
+}
+
+.photos-list-item__title {
+  margin-right: 80px;
+  height: 22px;
+  font-size: 14px;
+  font-weight: 500;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  line-height: 22px;
+  text-align: left;
+}
+
+.photos-list-item__author {
+  margin-right: 80px;
+  font-size: 13px;
+  line-height: 22px;
+  text-align: left;
+}
+
+.photos-list-item__footer {
+  padding: 0 5px;
+  position: relative;
+  height: 70px;
+}
+
+.photos-list-item__favorite-button {
+  position: absolute;
+  right: 5px;
+  top: 5px;
+}
