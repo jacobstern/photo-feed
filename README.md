@@ -5,7 +5,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 ## Time spent
 
 I spent 6 hours on this:
-  - 0.5 hours planning and diagramming Redux state
+  - 0.5 hours planning and [diagramming Redux state](https://github.com/jacobstern/photo-feed/issues/1)
   - 2 hours building data model and tests
   - 3.5 hours on UI and end-to-end
 
